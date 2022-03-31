@@ -1,0 +1,39 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .profile_pic{
+        width: 100%;
+        
+        border-radius: 50%;
+        
+    }
+  
+</style>
+<br>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card card-body">
+
+              <a href="{% url 'user'%}"class= "btn btn-warning "> &#8592;  back to profile</a>
+            
+        
+            <div class="card-body">
+              <h5 style =" text-align: center;" class="card-title">Account Settings</h5>
+              <hr>
+              <img class = "profile_pic" src="{{request.user.customer.profile_pic.url}}" alt="">
+            </div>
+          </div>
+    </div>
+    <div class="col-md-9 ">
+        <div class="card card-body">
+            <form action=""method = 'POST'enctype ="multipart/form-data"><!--enctype -we are updating image-->
+            {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value = 'Update information' class= "btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
